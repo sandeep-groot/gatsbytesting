@@ -44,8 +44,8 @@ jobs:
       - name: Build with Gatsby
         run: npm run build
         
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.1
+     # - name: Upload a Build Artifact
+    #  uses: actions/upload-artifact@v3.1.1
         
         
   # Deploy job  
@@ -54,7 +54,9 @@ jobs:
    runs-on: windows-latest
    needs: build
    steps:
-     
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+      
     - name:  FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
