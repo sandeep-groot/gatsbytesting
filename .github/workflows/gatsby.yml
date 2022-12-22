@@ -18,7 +18,7 @@ on:
 jobs:
   # Build job
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
       - name: Checkout
@@ -44,21 +44,23 @@ jobs:
       - name: Build with Gatsby
         run: npm run build
         
-  # Build job  
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.1
+        
+        
+  # Deploy job  
   web-deploy:
    name: Deploy
-   runs-on: ubuntu-latest
+   runs-on: windows-latest
    needs: build
    steps:
-   
      
     - name:  FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
         server: ${{ secrets.DEPLOY_SERVER }}
         username: ${{ secrets.DEPLOY_USERNAME }}
-        password: ${{ secrets.DEPLOY_PSW }}
-        
+        password: ${{ secrets.DEPLOY_PSW }}        
         server-dir: /QA/
         
         exclude: |
