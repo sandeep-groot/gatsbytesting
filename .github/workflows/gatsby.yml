@@ -57,8 +57,9 @@ jobs:
       with:
         server: 97.74.92.197
         username: Orbito
-        password: Orbito@123
-        server-dir: /QA/
+        password: Orbito@123        
+        protocol: ftps
+        dry-run: true
         exclude: |
           **/.git*
           **/.git*/**
