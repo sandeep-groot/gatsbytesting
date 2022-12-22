@@ -49,19 +49,15 @@ jobs:
    name: Deploy
    runs-on: ubuntu-latest
    steps:
-    - uses: actions/checkout@master
-    - name: Download Artifact 'public'
-      uses: actions/download-artifact@master
-      with:
-          name: 'public'
-          path: '${{ github.workspace }}/public'      
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
      
     - name:  FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: 97.74.92.197
-        username: Orbito
-        password: Orbito@123
+        server: ${{ secrets.DEPLOY_SERVER }}
+        username: ${{ secrets.DEPLOY_USERNAME }}
+        password: ${{ secrets.DEPLOY_PSW }}
         local_dir: "./public"
         server-dir: /QA/
         
