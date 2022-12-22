@@ -43,6 +43,27 @@ jobs:
         run: npm install
       - name: Build with Gatsby
         run: npm run build
+        
+  # Build job  
+  web-deploy:
+   name: Deploy
+   runs-on: ubuntu-latest
+   steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+     
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+      with:
+        server: 97.74.92.197
+        username: Orbito
+        password: Orbito@123
+        server-dir: /QA/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          
        
 
 
