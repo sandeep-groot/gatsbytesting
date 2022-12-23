@@ -57,32 +57,34 @@ jobs:
       - name: Cache Build
         id: cache-build
         uses: actions/cache@v3
-        with:
+         with:
           path: |
             public
             .cache
-          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('public') }}
+          key: ${{ runner.os }}-gatsby-build
           restore-keys: |
-            ${{ runner.os }}-gatsby-build-
+            ${{ runner.os }}-gatsby-build
      
+      - name: Step 1 - Create a temporary artifact folder
+      - run: mkdir builddirectory  
+      
       - name: Build with Gatsby
         # if: steps.cache-build.outputs.cache-hit != 'true'
         run: npm run build
         
-    
-      - run: mkdir -p /artifact-build      
+         
 
       - uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: /artifact-build
+          path: artifact-build
         
         
   # Deploy job  
   web-deploy:
    name: Deploy
    runs-on: windows-latest
-   needs: build
+   # needs: build
    steps:
     - uses: actions/checkout@v2
 
@@ -93,18 +95,18 @@ jobs:
     - name: Display structure of downloaded files
       run: ls -R
       
-    - name:  FTP Deploy
-      uses: SamKirkland/FTP-Deploy-Action@4.3.3
-      with:
-        server: ${{ secrets.DEPLOY_SERVER }}
-        username: ${{ secrets.DEPLOY_USERNAME }}
-        password: ${{ secrets.DEPLOY_PSW }}        
-        server-dir: /QA/
+   # - name:  FTP Deploy
+   #   uses: SamKirkland/FTP-Deploy-Action@4.3.3
+    #  with:
+     #   server: ${{ secrets.DEPLOY_SERVER }}
+      #  username: ${{ secrets.DEPLOY_USERNAME }}
+       # password: ${{ secrets.DEPLOY_PSW }}        
+        #server-dir: /QA/
         
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/**
+        #exclude: |
+         # **/.git*
+          #**/.git*/**
+          #**/node_modules/**
           
        
 
