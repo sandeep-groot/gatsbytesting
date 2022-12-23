@@ -65,8 +65,8 @@ jobs:
          # restore-keys: |
           #  ${{ runner.os }}-gatsby-build
      
-      - name: Step 1 - Create a temporary artifact folder
-      - run: mkdir builddirectory  
+    #  - name: Step 1 - Create a temporary artifact folder
+     # - run: mkdir builddirectory  
       
       - name: Build with Gatsby
         # if: steps.cache-build.outputs.cache-hit != 'true'
@@ -74,10 +74,10 @@ jobs:
         
          
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: build-artifact
-          path: artifact-build
+     # - uses: actions/upload-artifact@v3
+      #  with:
+       #   name: build-artifact
+        #  path: artifact-build
         
         
   # Deploy job  
@@ -88,12 +88,12 @@ jobs:
    steps:
     - uses: actions/checkout@v2
 
-    - uses: actions/download-artifact@v3
-      with:
-         name: build-artifact
+   # - uses: actions/download-artifact@v3
+    #  with:
+     #    name: build-artifact
     
-    - name: Display structure of downloaded files
-      run: ls -R
+   # - name: Display structure of downloaded files
+    #  run: ls -R
       
    # - name:  FTP Deploy
    #   uses: SamKirkland/FTP-Deploy-Action@4.3.3
