@@ -31,6 +31,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3     
       
+      - name: Cache node modules
+        id: cache-nodemodules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # caching node_modules
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       
       - name: Setup Node Using Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
