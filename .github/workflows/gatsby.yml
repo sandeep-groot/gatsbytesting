@@ -70,14 +70,12 @@ jobs:
         run: npm run build
         
     
-      - run: mkdir -p path/to/artifact
-
-      - run: echo hello > path/to/artifact/world.txt
+      - run: mkdir -p /artifact-build      
 
       - uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
-          path: path/to/artifact/world.txt
+          name: build-artifact
+          path: /artifact-build
         
         
   # Deploy job  
@@ -90,7 +88,7 @@ jobs:
 
     - uses: actions/download-artifact@v3
       with:
-         name: my-artifact
+         name: build-artifact
     
     - name: Display structure of downloaded files
       run: ls -R
