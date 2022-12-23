@@ -57,13 +57,13 @@ jobs:
       - name: Cache Build
         id: cache-build
         uses: actions/cache@v3
-        with:
-          path: |
-            public
-            .cache
-          key: ${{ runner.os }}-gatsby-build
-          restore-keys: |
-            ${{ runner.os }}-gatsby-build
+       # with:
+        #  path: |
+         #   public
+          #  .cache
+         # key: ${{ runner.os }}-gatsby-build
+         # restore-keys: |
+          #  ${{ runner.os }}-gatsby-build
      
       - name: Step 1 - Create a temporary artifact folder
       - run: mkdir builddirectory  
