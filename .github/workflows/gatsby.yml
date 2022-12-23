@@ -54,7 +54,8 @@ jobs:
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: npm install
       
-      - name: Restore cache
+      - name: Cache Build
+        id: cache-build
         uses: actions/cache@v3
         with:
           path: |
@@ -65,10 +66,18 @@ jobs:
             ${{ runner.os }}-gatsby-build-
      
       - name: Build with Gatsby
+        # if: steps.cache-build.outputs.cache-hit != 'true'
         run: npm run build
         
-     # - name: Upload a Build Artifact
-    #  uses: actions/upload-artifact@v3.1.1
+    
+      - run: mkdir -p path/to/artifact
+
+      - run: echo hello > path/to/artifact/world.txt
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: path/to/artifact/world.txt
         
         
   # Deploy job  
@@ -77,8 +86,14 @@ jobs:
    runs-on: windows-latest
    needs: build
    steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+
+    - uses: actions/download-artifact@v3
+      with:
+         name: my-artifact
+    
+    - name: Display structure of downloaded files
+      run: ls -R
       
     - name:  FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
