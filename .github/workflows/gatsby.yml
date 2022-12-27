@@ -66,8 +66,14 @@ jobs:
       - name: Build with Gatsby
         run: npm run build
         
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
+      - name: Upload Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: gaysby-build
+          path: public
+        
+      #- name: Archive production artifacts
+       # uses: actions/upload-artifact@v3
         
           
           
@@ -79,10 +85,15 @@ jobs:
     runs-on: windows-latest
     
     steps:                  
-      - name: Download a single artifact
-        uses: actions/download-artifact@v3
+      #- name: Download a single artifact
+       # uses: actions/download-artifact@v3
        
-         
+      - uses: actions/checkout@master
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: gaysby-build
+          path: public 
         
       - name:  FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
