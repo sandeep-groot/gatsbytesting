@@ -75,6 +75,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: gatsby-atifact
+          path: |
+            public
         
       #- name:  FTP Deploy
         #uses: SamKirkland/FTP-Deploy-Action@4.3.3
