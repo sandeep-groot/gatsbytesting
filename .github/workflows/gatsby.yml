@@ -108,7 +108,7 @@ jobs:
           server: ${{ secrets.DEPLOY_SERVER }}
           username: ${{ secrets.DEPLOY_USERNAME }}
           password: ${{ secrets.DEPLOY_PSW }}
-          local-dir: public
+          local-dir: ./public/
           server-dir: /QA/
         
       
