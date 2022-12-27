@@ -61,8 +61,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gatsby-build-
      
-      - name: Step 1 - Create a temporary artifact downloads folder
-        run: mkdir downloads
+  
         
       - name: Build with Gatsby
         run: npm run build
@@ -71,9 +70,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: gatsby-atifact
-          path: downloads
-          #path: |
-           # public
+          
             
             
   # Deploy job
@@ -86,9 +83,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: gatsby-atifact
-          path: downloads
-          #path: |
-           # public
+         
         
       - name:  FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
