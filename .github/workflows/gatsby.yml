@@ -71,6 +71,8 @@ jobs:
         with:
           name: gaysby-build
           path: public
+          
+     
         
       #- name: Archive production artifacts
        # uses: actions/upload-artifact@v3
@@ -93,7 +95,10 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: gaysby-build
-          path: public 
+          path: public
+          
+      - name: Open Public Folder
+        run: cd public 
         
       - name:  FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
