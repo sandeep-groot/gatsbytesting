@@ -100,23 +100,15 @@ jobs:
       - name: Open Public Folder
         run: dir
         
-      - name: Upload to FTP
-        uses: isthatcentered/dist-to-ftp@master
-        with:
-          user: ${{ secrets.DEPLOY_USERNAME }} # Ftp user Ex:
-          password: ${{ secrets.DEPLOY_PSW }} # Ftp password Ex:
-          host: ${{ secrets.DEPLOY_SERVER }} # Ftp host Ex:
-          # port: ${{ secrets.FTP_PORT }} # (optional) FTP port, defaults to 21
-          path: public # Folder to deploy Ex: apps/frontend/dist or dist
-          into: QA # Where to place the files in your ftp
-          cleanupExisting: true # (Optional), Remove already existing files inside FTP destination folder (`into` parameter)
+    
         
-      #- name:  FTP Deploy
-       # uses: SamKirkland/FTP-Deploy-Action@4.3.3
-        #with:
-         # server: ${{ secrets.DEPLOY_SERVER }}
-          #username: ${{ secrets.DEPLOY_USERNAME }}
-          #password: ${{ secrets.DEPLOY_PSW }}        
-          #server-dir: /QA/
+      - name:  FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.DEPLOY_SERVER }}
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          password: ${{ secrets.DEPLOY_PSW }}
+          local-dir: public
+          server-dir: /QA/
         
       
