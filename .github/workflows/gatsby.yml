@@ -63,14 +63,14 @@ jobs:
      
   
         
-      #- name: Build with Gatsby
-       # run: npm run build
+      - name: Build with Gatsby
+        run: npm run build
         
-      #- name: Upload Artifact
-       # uses: actions/upload-artifact@master
-       # with:
-        #  name: gaysby-build
-         # path: public
+      - name: Upload Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: gaysby-build
+          path: public
           
      
         
