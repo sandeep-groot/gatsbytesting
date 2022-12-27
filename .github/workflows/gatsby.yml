@@ -78,12 +78,12 @@ jobs:
           path: |
             public
         
-      #- name:  FTP Deploy
-        #uses: SamKirkland/FTP-Deploy-Action@4.3.3
-        #with:
-         # server: ${{ secrets.DEPLOY_SERVER }}
-         # username: ${{ secrets.DEPLOY_USERNAME }}
-         # password: ${{ secrets.DEPLOY_PSW }}        
-         # server-dir: /QA/
+      - name:  FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.DEPLOY_SERVER }}
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          password: ${{ secrets.DEPLOY_PSW }}        
+          server-dir: /QA/
         
       
