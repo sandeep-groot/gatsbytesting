@@ -107,7 +107,7 @@ jobs:
           password: ${{ secrets.DEPLOY_PSW }} # Ftp password Ex:
           host: ${{ secrets.DEPLOY_SERVER }} # Ftp host Ex:
           # port: ${{ secrets.FTP_PORT }} # (optional) FTP port, defaults to 21
-          path: QA # Folder to deploy Ex: apps/frontend/dist or dist
+          path: public # Folder to deploy Ex: apps/frontend/dist or dist
           into: QA # Where to place the files in your ftp
           cleanupExisting: true # (Optional), Remove already existing files inside FTP destination folder (`into` parameter)
         
